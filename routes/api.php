@@ -21,10 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('login', [UserController::class, 'login']);
-Route::post('register', [UserController::class, 'registerUser']);
+Route::post('verify-otp', [UserController::class, 'verifyOtp'])->name('verify.otp');
 
 Route::group(['middleware' => 'jwt.auth'], function () {
 
+    Route::post('register', [UserController::class, 'registerUser']);
     Route::post('update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
 
 });
